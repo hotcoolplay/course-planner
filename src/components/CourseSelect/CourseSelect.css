@@ -1,0 +1,10 @@
+#select {
+    padding-bottom: 30vw;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    border-color: #ffd904;
+}
+img {
+    margin-left: 1vw;
+    width: 2vw;
+}

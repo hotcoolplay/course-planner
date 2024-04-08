@@ -1,0 +1,83 @@
+#menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+#schedule {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.year {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+h3 {
+    width: 100%;
+}
+
+.term {
+    width: 100%;    
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#five {
+    width: 50%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: flex;
+    margin: auto;
+}
+
+#fivetruncated {
+    width: calc(100%/3);
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: flex;
+    margin: auto;
+}
+
+button {
+    border-radius: 8px;
+    padding: 0.6em 1.2em;
+    border: 1px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #242424;
+    cursor: pointer;
+    transition: background-color 0.25s;
+    color: #ffd904;
+    margin: 0px;
+    flex: 0 0 24.8%;
+}
+.sel {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    border-color: #ffd904;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #242424;
+    cursor: pointer;
+    transition: background-color 0.25s;
+    color: #ffd904;
+    margin: 0px;
+    flex: 0 0 24.8%;
+}
+button:hover {
+    background-color: #121010;
+}
