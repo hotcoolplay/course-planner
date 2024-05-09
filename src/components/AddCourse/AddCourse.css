@@ -1,0 +1,43 @@
+.course-container {
+    position: relative;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    width: 100%;
+}
+li {
+    background-color: #242424;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+.input-container {
+    display: flex;
+    padding-bottom: 1rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    height: 2rem;
+}
+.course-input {
+    background-color: #242424;
+    border: 0;
+    color: #ffd904;
+    font-weight: bold;
+    width: 75%;
+    margin-right: 0.15rem;
+}
+.course-input:focus {
+    border-color: #ffd904;
+    outline: 1px solid #242424;
+}
+.add-button {
+    padding: 1px 6px;
+}
+.add-icon {
+    vertical-align: middle;
+    height: 20px;
+    width: 100%;
+}

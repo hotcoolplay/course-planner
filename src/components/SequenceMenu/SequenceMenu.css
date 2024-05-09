@@ -23,7 +23,7 @@
 }
 
 h3 {
-    width: 100%;
+    width: 100%
 }
 
 .term {
@@ -42,7 +42,7 @@ h3 {
 }
 
 #fivetruncated {
-    width: calc(100%/3);
+    width: calc(100% / 3);
     justify-content: space-around;
     flex-wrap: wrap;
     display: flex;

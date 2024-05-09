@@ -1,33 +1,28 @@
 import React, { useState } from "react";
 import "./CourseSelect.css";
-import { Term, Course } from "../../types";
-import icon from "../../assets/rows-plus-bottom.svg";
-
+import { Term } from "../../types";
+import AddCourse, { AddCourseProps } from "../AddCourse/AddCourse"
 export interface SelectionMenuProps {
     level: number;
     study: boolean;
     term: Term;
+    year: number;
+    courseCount: number;
 }
 
 function CourseSelect(courseSelect: SelectionMenuProps) {
-    const [visibility, setVisibility] = useState(false);
-    const [selected, setSelected] = useState(0);
-    let selectedCourses: Course[] = [];
-    const courseSelectHandler: (course: Course) => void = (course: Course) => {
-        selectedCourses.push(course);
-        setSelected(selected + 1);
-    } 
-    const visibilityHandler: React.MouseEventHandler<HTMLButtonElement> =
-        () => {
-        setVisibility(!visibility);
+    const addCourseProps: AddCourseProps[] = []
+    const maxCourses = courseSelect.study ? 7 : 3;
+    for (let i = 0; i < maxCourses; ++i) {
+        const props: AddCourseProps = { term: courseSelect.term, year: courseSelect.year }
+        addCourseProps.push(props)
     }
     return (
-        <div id="select">
+        <div className={`select-${courseSelect.courseCount}`}>
+            //TODO: if third term of seq 3 set to Off instead of Co-op
             <h4>{courseSelect.study ? courseSelect.term : courseSelect.term + " (Co-op)"}</h4>
-            {selectedCourses.map((item) => (
-                <button>{item.subject}</button>
-            ))}
-            <button id="course" onClick={visibilityHandler}>Add Course...<img src={icon} alt=""/></button>
+            {addCourseProps.map((item) => 
+            <AddCourse {...item} />)}
         </div> 
     );
 }

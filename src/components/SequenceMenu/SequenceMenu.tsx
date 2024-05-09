@@ -16,16 +16,18 @@ function SequenceMenu() {
         else return four; 
     }
     function propMaker (arr: boolean[]): SelectionMenuProps[]  {
-        let propArray: SelectionMenuProps[] = [];
+        const propArray: SelectionMenuProps[] = [];
         let count: number = 0;
-        for (var i = 0; i < arr.length; ++i) {
-            let props: SelectionMenuProps = { level: count, study: arr[i], term: "Fall"};
+        for (let i = 0; i < arr.length; ++i) {
+            const props: SelectionMenuProps = { level: count, study: arr[i], term: "Fall", year: 2024, courseCount: 3};
             if (arr[i]) {
                 ++count;
             }
             if (i % 3 === 0) props.term = "Fall";
             else if (i % 3 === 1) props.term = "Winter";
             else props.term = "Spring";
+            props.year += Math.floor(i / 3);
+            if (sequence != 3 && i / 3 >= 4) props.courseCount = 2;
             propArray.push(props);
         }
         return propArray;
