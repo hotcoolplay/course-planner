@@ -19,7 +19,6 @@ function CourseSelect(courseSelect: SelectionMenuProps) {
     }
     return (
         <div className={`select-${courseSelect.courseCount}`}>
-            //TODO: if third term of seq 3 set to Off instead of Co-op
             <h4>{courseSelect.study ? courseSelect.term : courseSelect.term + " (Co-op)"}</h4>
             {addCourseProps.map((item) => 
             <AddCourse {...item} />)}
