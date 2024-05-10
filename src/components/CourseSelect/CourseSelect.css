@@ -1,12 +1,13 @@
 .select-3 {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    border-color: #ffd904;
     width: calc(100% / 3 - 2px)
 }
 .select-2 {
+    width: calc(100% / 2 - 2px)
+}
+
+[class*="select"] {
     border-radius: 8px;
     border: 1px solid transparent;
     border-color: #ffd904;
-    width: calc(100% / 2 - 2px)
+    padding-bottom: 35vh;
 }

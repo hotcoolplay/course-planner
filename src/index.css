@@ -21,3 +21,10 @@ h1 {
   line-height: 1.1;
   margin-top: 0;
 }
+
+:root::-webkit-scrollbar {
+  background-color: #242424;
+}
+:root::-webkit-scrollbar-thumb {
+  background-color: #ffd904;
+}

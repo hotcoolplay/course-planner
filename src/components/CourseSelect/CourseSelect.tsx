@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./CourseSelect.css";
 import { Term } from "../../types";
 import AddCourse, { AddCourseProps } from "../AddCourse/AddCourse"

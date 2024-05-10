@@ -4,10 +4,12 @@ import CourseSelect, { SelectionMenuProps } from "../CourseSelect/CourseSelect";
 import { one, two, three, four } from "../../utils/constants"
 
 function SequenceMenu() {
-    const [sequence, setSequence] = useState(1);
+    const [sequence, setSequence] = useState(localStorage.getItem('userSequence') === null ? 1 : parseInt(localStorage.getItem('userSequence')!));
     const sequenceSelectHandler: React.MouseEventHandler<HTMLButtonElement> = 
         (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        setSequence(parseInt((e.target as HTMLButtonElement).value));
+        const newSequence = parseInt((e.target as HTMLButtonElement).value)
+        setSequence(newSequence);
+        localStorage.setItem('userSequence', newSequence.toString())
     } 
     function sequenceArray(): boolean[] {
         if (sequence == 1) return one;
@@ -19,14 +21,14 @@ function SequenceMenu() {
         const propArray: SelectionMenuProps[] = [];
         let count: number = 0;
         for (let i = 0; i < arr.length; ++i) {
-            const props: SelectionMenuProps = { level: count, study: arr[i], term: "Fall", year: 2024, courseCount: 3};
+            const props: SelectionMenuProps = { level: count, study: arr[i], term: "Fall", year: 2023, courseCount: 3};
             if (arr[i]) {
                 ++count;
             }
             if (i % 3 === 0) props.term = "Fall";
             else if (i % 3 === 1) props.term = "Winter";
             else props.term = "Spring";
-            props.year += Math.floor(i / 3);
+            props.year += Math.floor((i + 2) / 3);
             if (sequence != 3 && i / 3 >= 4) props.courseCount = 2;
             propArray.push(props);
         }

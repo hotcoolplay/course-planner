@@ -19,7 +19,7 @@ function AddCourse(courseProps: AddCourseProps) {
         baseURL: import.meta.env.VITE_API_URL
     })
     useEffect(() => {
-        client.get<Course[]>(`/courses/term/${courseProps.term.toLowerCase()}-${new Date().getFullYear()}`).then(
+        client.get<Course[]>(`/courses/term/${courseProps.term.toLowerCase()}-${courseProps.term === 'Fall' ? '2023' : '2024'}`).then(
             (res) => {
                 console.log(res.data)
                 setCourses(res.data)
@@ -69,7 +69,7 @@ function AddCourse(courseProps: AddCourseProps) {
                 <input className="course-input" placeholder="Add Course..." {...getInputProps({type: 'text'})} />
                 <button className="add-button" type="button" {...getToggleButtonProps()}><img className="add-icon" src={icon} /></button>
             </div>
-            <ul {...getMenuProps({ref: parentRef})}>
+            <ul className={!(isOpen && items.length) ? 'course-list-hidden' : 'course-list'} {...getMenuProps({ref: parentRef})}>
                 <div
                     style={{
                         height: `${rowVirtualizer.getTotalSize()}px`,
@@ -79,12 +79,14 @@ function AddCourse(courseProps: AddCourseProps) {
                 >
                 {isOpen && rowVirtualizer.getVirtualItems().map((virtualRow) => (
                     <li
+                        className={highlightedIndex === virtualRow.index ? 'highlighted-course' : 'course'}
                         key={`${courseProps.term}-${courseProps.year}-${items[virtualRow.index].courseid}`}
                         {...getItemProps({
                         index: virtualRow.index,
                         item: items[virtualRow.index],
                         style: {
-                            height: `${virtualRow.size}px`
+                            height: `${virtualRow.size}px`,
+                            transform: `translateY(${virtualRow.start}px)`
                         }
                         })}
                     >
