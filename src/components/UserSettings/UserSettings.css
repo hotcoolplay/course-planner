@@ -1,0 +1,36 @@
+h1 {
+    position: relative;
+    font-size: 2vw;
+    line-height: 1.1;
+    margin: 0;
+    text-align: left;
+    padding-right: 1rem;
+}
+.toggle {
+    height: 100%;
+    max-width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+}
+.user-highlighted-item {
+    background-color: #121212;
+    position: relative;
+    width: 100%;
+    line-height: clamp(2vw, 6vh, 3vw);
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 3px;
+}
+.user-item {
+    position: relative;
+    width: 100%;
+    line-height: clamp(2vw, 6vh, 3vw);
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 3px;
+}
+.selector {
+    position: relative;
+    padding-right: 2vw;
+}

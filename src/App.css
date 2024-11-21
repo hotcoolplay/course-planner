@@ -1,6 +1,27 @@
 #root {
   margin: 0 auto;
   padding: 2rem;
+  padding-top: clamp(10px, 1.5vh, 20px);
   text-align: center;
 }
-
+#menu {
+  left: 40px;
+  width: 96%;
+  height: clamp(15px, 12vh, 20px);
+  display: flex;
+  clear: both;
+  padding-bottom: clamp(5px, 6vh, 10px);;
+  max-height: 30px;
+  justify-content: space-between;
+}
+button {
+  background-color: #242424;
+  border: 0;
+}
+#layout {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: auto;
+  flex-wrap: wrap;
+}

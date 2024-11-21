@@ -1,5 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.3vw;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -12,15 +13,6 @@
   color: #ffd904;
 }
 
-h1 {
-  text-align: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  font-size: 2em;
-  line-height: 1.1;
-  margin-top: 0;
-}
 
 :root::-webkit-scrollbar {
   background-color: #242424;

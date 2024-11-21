@@ -1,0 +1,39 @@
+#schedule {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.year-3 {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.year-2 {
+  width: calc(100% / 3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.year-1 {
+  width: calc(100% / 6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+h3 {
+  width: 100%;
+}
+
+.terms-3 {
+  width: calc(100% / 3 - 2px);
+}
+.terms-2 {
+  width: calc(100% / 2 - 2px);
+}
