@@ -7,22 +7,22 @@ import {
   YearSelector,
 } from "@/components/UserSettings";
 import { YearLayout } from "@/components/ScheduleLayout";
-import { Major, SelectedMajor, Sequence, Program } from "@/types";
+import { SelectedMajor, Sequence, Program } from "@/types";
 import { standard } from "@/utils/Sequences";
-import { client } from "@/lib/client";
 import { useState, useEffect } from "react";
 
 function App() {
   const [major, setMajor] = useState<SelectedMajor>();
-  const [sequence, setSequence] = useState<Sequence>(standard);
+  const [sequences, setSequences] = useState<Sequence[]>([standard]);
+  const [sequence, setSequence] = useState<Sequence>(sequences[0]);
   const [extension, setExtension] = useState<Program>();
   const [startYear, setStartYear] = useState(2024);
-  let sequences: Sequence[] = [standard];
   function onSelectMajor(major: SelectedMajor) {
     setMajor(major);
-    if (major.regular && major.coop) sequences = [standard, ...major.sequences];
-    else if (major.coop) sequences = major.sequences;
-    else sequences = [standard];
+    if (major.regular && major.coop)
+      setSequences([standard, ...major.sequences]);
+    else if (major.coop) setSequences(major.sequences);
+    else setSequences([standard]);
   }
   function sliceArray(arr: string[], index: number): string[] {
     return arr.slice(index, index + 3);

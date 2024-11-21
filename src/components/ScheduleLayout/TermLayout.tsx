@@ -34,7 +34,13 @@ export function TermLayout({ year, term, termType }: TermLayoutProps) {
   }
   return (
     <>
-      <h4>{`${term} ${termType === "Off" ? `(${termType})` : ""}`}</h4>
+      <h4>{`${term} ${
+        termType === "Off"
+          ? `(${termType})`
+          : termType.includes("WT")
+          ? `(Co-op)`
+          : ""
+      }`}</h4>
       {CourseSelectors.map((item) => (
         <CourseSelector courseList={item} />
       ))}
