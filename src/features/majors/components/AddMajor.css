@@ -1,0 +1,59 @@
+#add-major {
+  padding: 1px 6px;
+  background-color: #242424;
+  color: #ffd904;
+  border: 0;
+  padding-right: auto;
+  border-radius: 8px;
+  height: 2rem;
+  text-align: left;
+  display: flex;
+  width: 30vw;
+  box-shadow: 1px 1px 1px 1px black;
+  margin-right: 1vw;
+  cursor: pointer;
+}
+
+#add-major-none {
+  cursor: pointer;
+  padding: 1px 6px;
+  background-color: #242424;
+  color: #ffd904;
+  border: 0;
+  margin-right: auto;
+  border-radius: 8px;
+  height: 2rem;
+  text-align: left;
+  display: flex;
+  width: 7.5rem;
+  box-shadow: 1px 1px 1px 1px black;
+  margin-right: 1vw;
+}
+
+#add-major:hover {
+  background-color: #121212;
+}
+
+#add-major-none:hover {
+  background-color: #121212;
+}
+
+.button-text {
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: bold;
+  margin-right: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+}
+
+.add-icon {
+  margin-top: auto;
+  margin-bottom: auto;
+  position: relative;
+  margin-left: auto;
+  width: 1rem;
+}

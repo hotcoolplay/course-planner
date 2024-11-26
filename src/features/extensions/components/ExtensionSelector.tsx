@@ -1,24 +1,32 @@
 import { useRef, useState, useLayoutEffect } from "react";
-import "./CourseSelector.css";
-import { Course } from "@/types/index";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useCombobox } from "downshift";
-import icon from "@/assets/rows-plus-bottom.svg";
 
-type CourseSelectorProps = {
-  courseList: Course[];
+import { Program } from "@/types/index";
+import down from "@/assets/caret-down.svg";
+import up from "@/assets/caret-up.svg";
+
+type ExtensionSelectorProps = {
+  extensionList: Program[];
+  setSelectedExtension: (extension: Program | null) => void;
+  closeModal: () => void;
 };
 
-export function CourseSelector({ courseList }: CourseSelectorProps) {
-  function filterCourses(input: string) {
+export function ExtensionSelector({
+  extensionList,
+  setSelectedExtension,
+  closeModal,
+}: ExtensionSelectorProps) {
+  function filterExtensions(input: string) {
     const lowerInput = input.toLowerCase();
-    return function courseFilter(course: Course) {
-      const courseString =
-        course.subject.toLowerCase() + " " + course.catalogNumber.toLowerCase();
-      return !lowerInput || courseString.includes(lowerInput);
+    return function extensionFilter(extension: Program) {
+      const extensionString = extension.name.toLowerCase();
+      return !lowerInput || extensionString.includes(lowerInput);
     };
   }
-  const [items, setItems] = useState<Course[]>(courseList);
+
+  const [items, setItems] = useState<Program[]>(extensionList);
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -28,12 +36,16 @@ export function CourseSelector({ courseList }: CourseSelectorProps) {
     highlightedIndex,
     getItemProps,
   } = useCombobox({
+    onSelectedItemChange({ selectedItem }) {
+      setSelectedExtension(selectedItem);
+      closeModal();
+    },
     onInputValueChange({ inputValue }) {
-      setItems(courseList.filter(filterCourses(inputValue)));
+      setItems(extensionList.filter(filterExtensions(inputValue)));
     },
     items,
     itemToString(item) {
-      return item ? item.subject + " " + item.catalogNumber : "";
+      return item ? item.name : "";
     },
   });
   const parentRef = useRef(null);
@@ -58,27 +70,25 @@ export function CourseSelector({ courseList }: CourseSelectorProps) {
   }, [rowVirtualizer, estimatedSize]);
 
   return (
-    <div className="course-container">
+    <div className="item-container">
       <label {...getLabelProps()} />
       <div className="input-container">
         <input
-          className="course-input"
-          placeholder="Add Course..."
+          className="item-input"
+          placeholder="Add Extension..."
           {...getInputProps({ type: "text" })}
         />
         <button
           aria-label="toggle menu"
-          className="add-button"
+          className="select-button"
           type="button"
           {...getToggleButtonProps()}
         >
-          <img className="add-icon" src={icon} />
+          <img className="select-icon" src={isOpen ? up : down} />
         </button>
       </div>
       <ul
-        className={
-          !(isOpen && items.length) ? "course-list-hidden" : "course-list"
-        }
+        className={!(isOpen && items.length) ? "item-list-hidden" : "item-list"}
         {...getMenuProps({ ref: parentRef })}
       >
         <div
@@ -93,8 +103,8 @@ export function CourseSelector({ courseList }: CourseSelectorProps) {
               <li
                 className={
                   highlightedIndex === virtualRow.index
-                    ? "highlighted-course"
-                    : "course"
+                    ? "highlighted-item"
+                    : "item"
                 }
                 key={items[virtualRow.index].id}
                 {...getItemProps({
@@ -106,9 +116,7 @@ export function CourseSelector({ courseList }: CourseSelectorProps) {
                   },
                 })}
               >
-                {`${items[virtualRow.index].subject} ${
-                  items[virtualRow.index].catalogNumber
-                }`}
+                {`${items[virtualRow.index].name}`}
               </li>
             ))}
         </div>

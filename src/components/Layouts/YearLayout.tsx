@@ -1,6 +1,6 @@
 import "./YearLayout.css";
 import { Term } from "@/types";
-import { TermLayout } from "@/components/ScheduleLayout";
+import { TermLayout } from "@/components/Layouts";
 
 type YearLayoutProps = {
   startYear: number;
@@ -23,7 +23,7 @@ export function YearLayout({ startYear, year, termInfo }: YearLayoutProps) {
             <TermLayout
               year={year + Math.floor((index + 2) / 3)}
               term={determineTerm(index)}
-              termType={item}
+              termValue={item}
             />
           </div>
         ))}

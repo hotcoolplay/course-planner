@@ -1,0 +1,11 @@
+.modal {
+  background-color: #242424;
+  height: 70vh;
+  width: 75vw;
+  border-color: #ffd904;
+  border-width: 1px;
+}
+
+.modal::backdrop {
+  background: hsl(0%, 0%, 0% / 50%);
+}

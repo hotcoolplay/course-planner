@@ -10,9 +10,9 @@
   height: clamp(15px, 12vh, 20px);
   display: flex;
   clear: both;
-  padding-bottom: clamp(5px, 6vh, 10px);;
+  padding-bottom: clamp(5px, 6vh, 10px);
   max-height: 30px;
-  justify-content: space-between;
+  justify-content: start;
 }
 button {
   background-color: #242424;

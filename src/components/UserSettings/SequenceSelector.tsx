@@ -13,6 +13,13 @@ export function SequenceSelector({
   sequences,
   setSequence,
 }: SequenceSelectorProps) {
+  function getSequenceName(sequence: Sequence | null) {
+    if (!sequence) return "";
+    else if (sequence.name === "Standard") return sequence.name;
+    else if (!sequence.name) return "Sequence ";
+    else return "Sequence " + sequence.name;
+  }
+
   const {
     isOpen,
     selectedItem,
@@ -25,11 +32,10 @@ export function SequenceSelector({
     items: sequences,
     onSelectedItemChange({ selectedItem }) {
       setSequence(selectedItem);
-      console.log(selectedItem);
     },
     defaultSelectedItem: sequences[0],
     itemToString(item) {
-      return item && item.name ? item.name : "";
+      return getSequenceName(item);
     },
   });
   return (
@@ -37,7 +43,11 @@ export function SequenceSelector({
       <div id="select-sequence">
         <label {...getLabelProps()} />
         <div className="select-container" {...getToggleButtonProps()}>
-          <span>{selectedItem ? selectedItem.name : "Choose sequence..."}</span>
+          <span>
+            {selectedItem
+              ? getSequenceName(selectedItem)
+              : "Choose sequence..."}
+          </span>
           <img className="toggle" src={isOpen ? up : down} />
         </div>
       </div>
@@ -61,7 +71,7 @@ export function SequenceSelector({
               key={index}
               {...getItemProps({ item, index })}
             >
-              {item.name}
+              {getSequenceName(item)}
             </li>
           ))}
       </ul>

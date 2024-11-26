@@ -1,0 +1,49 @@
+#add-course {
+  padding: 1px 6px;
+  background-color: #242424;
+  color: #ffd904;
+  border-radius: 8px;
+  border: 0;
+  margin-top: 0.5vw;
+  height: 2rem;
+  text-align: center;
+  display: flex;
+  box-shadow: 1px 1px 1px 1px black;
+  width: 9rem;
+  position: relative;
+  cursor: pointer;
+}
+
+#add-course:hover {
+  background-color: #121212;
+}
+
+.delete {
+  cursor: pointer;
+  position: absolute;
+  height: auto;
+  width: auto;
+  right: calc((100% - 9rem) / 2 + clamp(3px, 0.7vw, 6px));
+  z-index: 1;
+  background-color: transparent;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  margin-inline: auto;
+  max-width: 5%;
+  height: auto;
+  display: flex;
+}
+
+.delete-icon {
+  max-height: 100%;
+  max-width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#add-course-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
