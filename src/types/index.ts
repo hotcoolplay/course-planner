@@ -39,10 +39,17 @@ export interface Major extends Program {
   coop: boolean;
 }
 
-export interface SelectedMajor extends Major {
+export interface SelectedDegree {
+  id: number;
+  name: string;
+  faculties: string[];
+}
+
+export type SelectedMajor = Omit<Major, "degreeId"> & {
+  degree: SelectedDegree;
   sequences: Sequence[];
   extensions: Program[];
-}
+};
 
 export interface Prerequisite {
   id: number;
@@ -52,30 +59,31 @@ export interface Prerequisite {
   requisiteSubtype: requisiteSubtype;
 }
 
-interface ParentPrerequisite extends Prerequisite {
+export interface ParentPrerequisite extends Prerequisite {
   amount: number | null;
   grade: number | null;
   units: number | null;
   programAverage: number | null;
+  prerequisites: Prerequisite[];
 }
 
-interface CoursePrerequisite extends Prerequisite {
+export interface CoursePrerequisite extends Prerequisite {
   courseId: number;
 }
 
-interface ProgramPrerequisite extends Prerequisite {
+export interface ProgramPrerequisite extends Prerequisite {
   programId: number;
 }
 
-interface LevelPrerequisite extends Prerequisite {
+export interface LevelPrerequisite extends Prerequisite {
   level: string;
 }
 
-interface OtherPrerequisite extends Prerequisite {
-  other: string;
+export interface OtherPrerequisite extends Prerequisite {
+  prerequisite: string;
 }
 
-interface PseudoCoursePrerequisite extends Prerequisite {
+export interface PseudoCoursePrerequisite extends Prerequisite {
   subject: string | null;
   catalogNumber: string | null;
   minCatalogNumber: number | null;
@@ -85,21 +93,21 @@ interface PseudoCoursePrerequisite extends Prerequisite {
   component: string | null;
 }
 
-interface CumulativeAveragePrerequisite extends Prerequisite {
+export interface CumulativeAveragePrerequisite extends Prerequisite {
   cumulativeAverage: number;
 }
 
-interface MajorAveragePrerequisite extends Prerequisite {
+export interface MajorAveragePrerequisite extends Prerequisite {
   majorAverage: number;
 }
 
-interface PseudoProgramPrerequisite extends Prerequisite {
+export interface PseudoProgramPrerequisite extends Prerequisite {
   faculty: string | null;
   majorType: majorType | null;
   majorSystem: majorSystem | null;
 }
 
-interface DegreePrerequisite extends Prerequisite {
+export interface DegreePrerequisite extends Prerequisite {
   degreeId: number;
 }
 

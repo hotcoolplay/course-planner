@@ -47,3 +47,16 @@
   display: flex;
   justify-content: center;
 }
+
+.invalid-button-text {
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: bold;
+  margin-right: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  color: #a80000;
+}
