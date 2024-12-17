@@ -1,2 +1,2 @@
-Current WIP Course Planner for CS students at UWaterloo.
+Current frontend for UW Course Planner.
 Built on Typescript + React + Vite.

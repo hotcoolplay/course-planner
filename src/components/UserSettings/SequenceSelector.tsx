@@ -1,4 +1,6 @@
 import { useSelect } from "downshift";
+import { useEffect } from "react";
+
 import { Sequence } from "@/types";
 import down from "@/assets/caret-down.svg";
 import up from "@/assets/caret-up.svg";
@@ -20,9 +22,14 @@ export function SequenceSelector({
     else return "Sequence " + sequence.name;
   }
 
+  useEffect(() => {
+    selectItem(sequences[0]);
+  }, [sequences]);
+
   const {
     isOpen,
     selectedItem,
+    selectItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
