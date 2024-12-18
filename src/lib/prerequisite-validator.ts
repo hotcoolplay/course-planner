@@ -155,7 +155,7 @@ function validateParentPrerequisite(
   } else throw Error(`Invalid parent prerequisite! ${prerequisite}`);
 }
 
-function validateOtherPrerequisite(prerequisite: OtherPrerequisite) {
+function validateOtherPrerequisite(_prerequisite: OtherPrerequisite) {
   return true;
 }
 
@@ -376,16 +376,16 @@ function validatePseudoCoursePrerequisite(
 }
 
 function validateMajorAveragePrerequisite(
-  prerequisite: MajorAveragePrerequisite,
-  average: number
+  _prerequisite: MajorAveragePrerequisite,
+  _average: number
 ) {
   //placeholder until major averages are implemented
   return true;
 }
 
 function validateCumulativeAveragePrerequisite(
-  prerequisite: CumulativeAveragePrerequisite,
-  average: number
+  _prerequisite: CumulativeAveragePrerequisite,
+  _average: number
 ) {
   //placeholder until cumulative averages are implemented
   return true;
