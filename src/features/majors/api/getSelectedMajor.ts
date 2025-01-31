@@ -11,6 +11,7 @@ function getSelectedMajorQueryOptions(id: number) {
   return queryOptions({
     queryKey: ["majors", id],
     queryFn: () => getSelectedMajor(id),
+    enabled: id !== 0,
   });
 }
 

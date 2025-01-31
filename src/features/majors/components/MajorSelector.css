@@ -1,9 +1,9 @@
 .item-list {
-  margin: 0;
+  margin: 0.6rem;
   padding: 0;
   list-style: none;
-  width: 100%;
-  overflow-y: auto;
+  width: calc(100% - min(24px, 2.2vw));
+  overflow-y: scroll;
   position: absolute;
   height: auto;
   max-height: min(25vw, 51vh);
@@ -13,7 +13,9 @@
 }
 .item-list::-webkit-scrollbar {
   width: min(17px, 1.5vw);
-  background-color: transparent;
+  height: min(17px, 1.5vw);
+  background-color: #363636;
+  border: 1px solid #ffd904;
 }
 .item-list::-webkit-scrollbar-thumb {
   background-color: #ffd904;
@@ -24,7 +26,7 @@
 .highlighted-item {
   background-color: #121010;
   position: absolute;
-  width: 99%;
+  width: calc(100% - 2px);
   height: clamp(2vw, 6vh, 3vw);
   line-height: clamp(2vw, 6vh, 3vw);
   vertical-align: middle;
@@ -39,7 +41,7 @@
 .item {
   background-color: #242424;
   position: absolute;
-  width: 99%;
+  width: calc(100% - 2px);
   height: clamp(2vw, 6vh, 3vw);
   line-height: clamp(2vw, 6vh, 3vw);
   vertical-align: middle;
@@ -55,6 +57,7 @@
   display: flex;
   padding: 0.6rem;
   height: 2rem;
+  border: 1px outset transparent;
 }
 .item-input {
   background-color: #242424;

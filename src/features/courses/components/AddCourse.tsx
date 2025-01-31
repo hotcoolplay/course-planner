@@ -6,7 +6,6 @@ import x from "@/assets/delete.svg";
 import { Course, SelectedCourse } from "@/types/index";
 import { SelectorModal } from "@/components/Modals";
 import { CourseSelector } from "./CourseSelector";
-import { useCourses } from "../api/getCoursesForTerm";
 import { useSelectedCourse } from "../api/getSelectedCourse";
 import "./AddCourse.css";
 
@@ -15,6 +14,7 @@ type AddCourseProps = {
   termIndex: number;
   index: number;
   course: SelectedCourse | null;
+  courseList: Course[] | undefined;
   selectCourse: (
     course: SelectedCourse,
     termIndex: number,
@@ -25,10 +25,10 @@ type AddCourseProps = {
 };
 
 export function AddCourse({
-  term,
   termIndex,
   index,
   course,
+  courseList,
   selectCourse,
   deleteCourse,
   validCourse,
@@ -46,8 +46,6 @@ export function AddCourse({
     setSelectedCourse(null);
     deleteCourse(termIndex, index);
   }
-
-  const courseList = useCourses(term).data?.data;
 
   const id = selectedCourse ? selectedCourse.id : 0;
 

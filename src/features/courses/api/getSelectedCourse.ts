@@ -11,6 +11,7 @@ function getSelectedCourseQueryOptions(id: number) {
   return queryOptions({
     queryKey: ["selectedCourse", id],
     queryFn: () => getSelectedCourse(id),
+    enabled: id !== 0,
   });
 }
 

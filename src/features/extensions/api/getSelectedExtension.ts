@@ -11,6 +11,7 @@ function getSelectedExtensionQueryOptions(id: number) {
   return queryOptions({
     queryKey: ["extensions", id],
     queryFn: () => getSelectedExtension(id),
+    enabled: id !== 0,
   });
 }
 

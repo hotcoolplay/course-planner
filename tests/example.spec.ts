@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+  await page.getByLabel('add major').click();
+  await page.getByPlaceholder('Add Major...').click();
+  await page.getByRole('option', { name: 'Combinatorics and Optimization (Bachelor of Mathematics - Honours)' }).click();
+  await page.locator('#add-major').click();
+  await page.getByLabel('toggle menu').click();
+  await page.getByPlaceholder('Add Major...').fill('compu');
+  await page.getByRole('option', { name: 'Computer Science (Bachelor of Computer Science - Honours)' }).click();
+  await page.locator('#add-extension-none').click();
+  await page.getByPlaceholder('Add Extension...').fill('actu');
+  await page.getByRole('option', { name: 'Actuarial Science Minor' }).click();
+  await page.locator('[id="downshift-\\:r7\\:-toggle-button"]').getByRole('img').click();
+  await page.getByRole('option', { name: 'Standard' }).click();
+  await page.getByText('Standard').click();
+  await page.getByRole('option', { name: 'Sequence 1' }).dblclick();
+  await page.locator('div').filter({ hasText: /^Year 1Fall Add CourseFall Add CourseFall \(Co-op\)Add Course$/ }).getByLabel('add course').first().click();
+  await page.getByPlaceholder('Add Course...').fill('math14');
+  await page.getByRole('option', { name: 'MATH145' }).click();
+  await page.locator('div').filter({ hasText: /^Fall MATH145Add Course$/ }).getByLabel('add course').nth(1).click();
+  await page.getByPlaceholder('Add Course...').fill('rs');
+  await page.getByRole('option', { name: 'ERS100' }).click();
+  await page.locator('div').filter({ hasText: /^Year 4Spring Add CourseSpring \(Co-op\)Add CourseSpring Add Course$/ }).getByLabel('add course').nth(2).click();
+  await page.getByPlaceholder('Add Course...').fill('math');
+  await page.getByRole('option', { name: 'PMATH332' }).click();
+  await page.locator('button').filter({ hasText: 'MATH145' }).click();
+  await page.getByPlaceholder('Add Course...').fill('math13');
+  await page.getByRole('option', { name: 'MATH135' }).click();
+  await page.locator('div').filter({ hasText: /^ERS100$/ }).getByLabel('delete course').click();
+});

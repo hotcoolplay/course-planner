@@ -1,13 +1,16 @@
-import { Term, SelectedCourse } from "@/types";
+import { Term, SelectedCourse, Course } from "@/types";
 import { AddCourse } from "@/features/courses/components/AddCourse";
 import { latestYear } from "@/utils/constants";
+import { useCourses } from "@/features/courses/api/getCoursesForTerm";
+import { useEffect } from "react";
 
 type TermLayoutProps = {
   termIndex: number;
   termCourses: SelectedCourse[];
   year: number;
-  term: Term;
   termValue: string;
+  loaded: boolean;
+  setLoading: (index: number) => void;
   handleSelectCourse: (
     course: SelectedCourse,
     termIndex: number,
@@ -21,18 +24,35 @@ export function TermLayout({
   termIndex,
   termCourses,
   year,
-  term,
   termValue,
+  loaded,
+  setLoading,
   handleSelectCourse,
   handleDeleteCourse,
   validateCourse,
 }: TermLayoutProps) {
-  const termString =
-    term.toLowerCase() + "-" + (year <= latestYear ? year : latestYear);
+  function determineTerm(index: number): Term {
+    if (index % 3 === 0) return "Fall";
+    else if (index % 3 === 1) return "Winter";
+    else return "Spring";
+  }
 
-  return (
+  const termString =
+    determineTerm(termIndex).toLowerCase() +
+    "-" +
+    (year <= latestYear ? year : latestYear);
+
+  let courseList: Course[] | undefined;
+
+  useEffect(() => {
+    setLoading(termIndex);
+  }, [courseList]);
+
+  courseList = useCourses(termString).data?.data;
+
+  return loaded ? (
     <>
-      <h4>{`${term} ${
+      <h4>{`${determineTerm(termIndex)} ${
         termValue === "Off"
           ? `(${termValue})`
           : termValue.includes("WT")
@@ -46,6 +66,7 @@ export function TermLayout({
           termIndex={termIndex}
           index={index}
           course={item}
+          courseList={courseList}
           selectCourse={handleSelectCourse}
           deleteCourse={handleDeleteCourse}
           validCourse={validateCourse(item, termIndex)}
@@ -56,10 +77,11 @@ export function TermLayout({
         termIndex={termIndex}
         index={termCourses.length}
         course={null}
+        courseList={courseList}
         selectCourse={handleSelectCourse}
         deleteCourse={handleDeleteCourse}
         validCourse={true}
       />
     </>
-  );
+  ) : null;
 }

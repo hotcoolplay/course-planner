@@ -1,10 +1,9 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import {
   SelectedMajor,
   Sequence,
   SelectedProgram,
   SelectedCourse,
-  Term,
 } from "@/types";
 import { AddMajor } from "@/features/majors/components/AddMajor";
 import { AddExtension } from "@/features/extensions/components/AddExtension";
@@ -62,11 +61,12 @@ function selectedCoursesReducer(
 }
 
 export function PageLayout() {
-  //const [selectedCourses, dispatch] = useReducer(selectedCoursesReducer, [])
   const [selectedCourses, dispatch] = useReducer(selectedCoursesReducer, []);
   const [major, setMajor] = useState<SelectedMajor | null>(null);
   const [sequence, setSequence] = useState<Sequence | null>(null);
   const [extension, setExtension] = useState<SelectedProgram | null>(null);
+  const [loadArray, setLoadArray] = useState<boolean[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
   function sliceArray(arr: string[], index: number): string[] {
     return arr.slice(index, index + 3);
@@ -109,7 +109,14 @@ export function PageLayout() {
     setSequence(sequence);
     if (sequence) {
       handleInitializeCourses(sequence);
+      setLoadArray(new Array(sequence.sequence.length).fill(false));
     }
+  }
+
+  function handleLoading(index: number) {
+    setLoadArray((arr) =>
+      arr.map((item, ind) => (ind === index ? true : item))
+    );
   }
 
   function validateCoursePrerequisites(course: SelectedCourse, index: number) {
@@ -130,11 +137,11 @@ export function PageLayout() {
     return true;
   }
 
-  function determineTerm(index: number): Term {
-    if (index === 0) return "Fall";
-    else if (index === 1) return "Winter";
-    else return "Spring";
-  }
+  useEffect(() => {
+    let allTermsLoaded = true;
+    for (const term of loadArray) if (!term) allTermsLoaded = false;
+    if (allTermsLoaded) setLoaded(true);
+  }, [loadArray]);
 
   return (
     <>
@@ -185,8 +192,9 @@ export function PageLayout() {
                         Math.floor(index / 3) +
                         Math.floor((termIndex + 2) / 3)
                       }
-                      term={determineTerm(index)}
                       termValue={item}
+                      loaded={loaded}
+                      setLoading={handleLoading}
                       handleSelectCourse={handleSelectCourse}
                       handleDeleteCourse={handleDeleteCourse}
                       validateCourse={validateCoursePrerequisites}
